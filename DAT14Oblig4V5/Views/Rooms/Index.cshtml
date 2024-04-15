@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DAT14Oblig4V5.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BedOptionNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualityNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BedOptionNavigation.BedOptionsId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hotel.HotelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualityNavigation.QualityId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RoomNr">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RoomNr">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RoomNr">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
