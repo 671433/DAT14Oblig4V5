@@ -1,0 +1,59 @@
+﻿@model DAT14Oblig4V5.Models.Reservation
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Reservation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ReservationId" />
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HotelId" class="control-label"></label>
+                <select asp-for="HotelId" class="form-control" asp-items="ViewBag.HotelId"></select>
+                <span asp-validation-for="HotelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReservationStart" class="control-label"></label>
+                <input asp-for="ReservationStart" class="form-control" />
+                <span asp-validation-for="ReservationStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReservationEnd" class="control-label"></label>
+                <input asp-for="ReservationEnd" class="form-control" />
+                <span asp-validation-for="ReservationEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Checkin" class="control-label"></label>
+                <input asp-for="Checkin" class="form-control" />
+                <span asp-validation-for="Checkin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Checkout" class="control-label"></label>
+                <input asp-for="Checkout" class="form-control" />
+                <span asp-validation-for="Checkout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

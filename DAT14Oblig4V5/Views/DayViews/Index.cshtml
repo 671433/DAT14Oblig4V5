@@ -1,0 +1,77 @@
+﻿@model IEnumerable<DAT14Oblig4V5.Models.DayView>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CleaningStatusNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaintenanceStatusNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNrNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomStatusNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceStatusNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CleaningStatusNavigation.RoomRequestEnumId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaintenanceStatusNavigation.RoomRequestEnumId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reservation.ReservationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomNrNavigation.RoomNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomStatusNavigation.RoomStatusId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceStatusNavigation.RoomRequestEnumId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DayViewId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DayViewId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DayViewId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

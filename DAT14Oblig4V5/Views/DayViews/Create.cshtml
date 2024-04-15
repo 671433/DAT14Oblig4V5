@@ -1,0 +1,62 @@
+﻿@model DAT14Oblig4V5.Models.DayView
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>DayView</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReservationId" class="control-label"></label>
+                <select asp-for="ReservationId" class ="form-control" asp-items="ViewBag.ReservationId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomService" class="control-label"></label>
+                <input asp-for="RoomService" class="form-control" />
+                <span asp-validation-for="RoomService" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomStatus" class="control-label"></label>
+                <select asp-for="RoomStatus" class ="form-control" asp-items="ViewBag.RoomStatus"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CleaningStatus" class="control-label"></label>
+                <select asp-for="CleaningStatus" class ="form-control" asp-items="ViewBag.CleaningStatus"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceStatus" class="control-label"></label>
+                <select asp-for="ServiceStatus" class ="form-control" asp-items="ViewBag.ServiceStatus"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaintenanceStatus" class="control-label"></label>
+                <select asp-for="MaintenanceStatus" class ="form-control" asp-items="ViewBag.MaintenanceStatus"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomNr" class="control-label"></label>
+                <select asp-for="RoomNr" class ="form-control" asp-items="ViewBag.RoomNr"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
