@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DAT14Oblig4V5.Models.Room>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";    
 }
 
 <h1>Index</h1>
@@ -13,13 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RoomSize)
+                @Html.DisplayNameFor(model => model.RoomNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => (model.RoomSize))
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BedOptionNavigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Hotel)
+                @Html.DisplayNameFor(model => model.Hotel )
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QualityNavigation)
@@ -30,6 +33,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNr)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RoomSize)
             </td>
