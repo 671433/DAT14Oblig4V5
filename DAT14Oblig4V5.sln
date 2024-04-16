@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAT14Oblig4V5", "DAT14Oblig4V5\DAT14Oblig4V5.csproj", "{6DCA21BA-C863-4C36-A4EC-0CE4B5F21FAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAT14Oblig4V5", "DAT14Oblig4V5\DAT14Oblig4V5.csproj", "{6DCA21BA-C863-4C36-A4EC-0CE4B5F21FAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontDeskApp", "FrontDeskApp\FrontDeskApp.csproj", "{52ACC166-D912-4278-A985-681409853843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFrontDesk", "AppFrontDesk\AppFrontDesk.csproj", "{F50F1AF9-7B08-4DC0-ADF7-F8D5C5EA5D16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{6DCA21BA-C863-4C36-A4EC-0CE4B5F21FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DCA21BA-C863-4C36-A4EC-0CE4B5F21FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DCA21BA-C863-4C36-A4EC-0CE4B5F21FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ACC166-D912-4278-A985-681409853843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52ACC166-D912-4278-A985-681409853843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52ACC166-D912-4278-A985-681409853843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52ACC166-D912-4278-A985-681409853843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F50F1AF9-7B08-4DC0-ADF7-F8D5C5EA5D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50F1AF9-7B08-4DC0-ADF7-F8D5C5EA5D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50F1AF9-7B08-4DC0-ADF7-F8D5C5EA5D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50F1AF9-7B08-4DC0-ADF7-F8D5C5EA5D16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

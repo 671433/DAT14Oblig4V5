@@ -1,0 +1,30 @@
+﻿<Page x:Class="AppFrontDesk.RegisterRoomService"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppFrontDesk"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegisterRoomService">
+
+    <Grid>
+        <Label Content="Register room service / maintenance" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="291,6,306,0"/>
+        <Button Content="Save Changes"  Margin="10,10,692,453"/>
+        <TextBox  Text="" x:Name="RoomServiceItem" HorizontalAlignment="Right" Width="419" Grid.Column="0" Margin="0,415,10,42"/>
+        <Button Content="Delete Room Service" Width="Auto" HorizontalAlignment="Left"  Margin="10,448,667,10"/>
+        <Button Content="Add Room Service" Width="Auto" HorizontalAlignment="Left" Margin="10,415,667,42"/>
+        <Button Content="Home" Click="Home_Click" Margin="712,10,10,453"/>
+        <DataGrid AutoGenerateColumns="False" x:Name="serviceList" ColumnWidth="*" Margin="10,37,10,75">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Service Number" Binding="{Binding }" />
+                <DataGridTextColumn Header="Service" Binding="{Binding }" />
+                <DataGridComboBoxColumn x:Name="statusColumn" Header="Status" TextBinding="{Binding }" />
+                <DataGridTextColumn Header="Note"  Binding="{Binding }" />
+                <DataGridTextColumn Header="Room Number" Binding="{Binding}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="roomNumberCombo" HorizontalAlignment="Center" Margin="138,415,475,0" VerticalAlignment="Top" Width="187" Height="28"/>
+    </Grid>
+
+</Page>
