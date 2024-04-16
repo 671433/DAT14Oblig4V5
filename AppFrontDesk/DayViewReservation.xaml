@@ -27,8 +27,8 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button x:Name="checkInBtn" Content="Add"/>
-                                <Button x:Name="checkOutBtn" Content="Edit"/>
+                                <Button Name="btn_add" Content="Add" Click="btn_add_Click"/>
+                                <Button Name="Btn_Edit" Content="Edit" Click="Btn_Edit_Click"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -39,6 +39,7 @@
         <Button Name="searchBtn" Content="Search" HorizontalAlignment="Left" Margin="242,41,0,0" VerticalAlignment="Top" Width="90" Height="23"/>
         <TextBox Name="searchText" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227"/>
         <Button Name="resetBtn" Content="Reset" HorizontalAlignment="Left" Margin="337,41,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.178,0.483" Height="24"/>
+        <Button Name="btn_save" Content="Save changes"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btn_save_Click"/>
     </Grid>
     
 </Page>
