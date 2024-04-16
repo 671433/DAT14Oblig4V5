@@ -12,7 +12,7 @@
         <Button Name="ManageReservation"  Content="Manage Reservation" HorizontalAlignment="Left" Margin="58,40,0,0" VerticalAlignment="Top" Width="121" Click="ManageReservation_Click" />
         <Button Name="Check" Content="Check in/Check out" HorizontalAlignment="Left" Margin="58,84,0,0" VerticalAlignment="Top" Width="121" Click="Check_Click"/>
         <Button Name="Register" Content="Register RoomService/Maintenance" HorizontalAlignment="Left" Margin="58,127,0,0" VerticalAlignment="Top" Width="209" Click="Register_Click"/>
-
+        <Button Name="DayView" Content="Dayview" HorizontalAlignment="Left" Margin="58,175,0,0" VerticalAlignment="Top" Width="138" Click="DayView_Click"/>
 
     </Grid>
 </Page>

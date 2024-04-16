@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppFrontDesk.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,5 +42,9 @@ namespace AppFrontDesk
             this.NavigationService.Navigate(new RegisterRoomService());
         }
 
+        private void DayView_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new DayViewReservation());
+        }
     }
 }

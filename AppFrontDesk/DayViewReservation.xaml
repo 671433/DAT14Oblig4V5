@@ -1,0 +1,44 @@
+﻿<Page x:Class="AppFrontDesk.DayViewReservation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppFrontDesk"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DayViewReservation">
+
+    <Grid>
+        <DataGrid x:Name="dayViewGrid" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" Margin="10,70,10,10" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Reservation Id" Binding="{Binding ReservationId}"/>
+                <DataGridTextColumn Header="Room Status" Binding="{Binding RoomStatus}"/>
+                <DataGridTextColumn Header="Cleaning Status" Binding="{Binding CleaningStatus}"/>
+                <DataGridTextColumn Header="Service Status" Binding="{Binding ServiceStatus}"/>
+                <DataGridTextColumn Header="Maintenance Status" Binding="{Binding MaintenanceStatus}"/>
+                <DataGridTextColumn Header="Room Nr" Binding="{Binding RoomNr}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Action"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="checkInBtn" Content="Add"/>
+                                <Button x:Name="checkOutBtn" Content="Edit"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="homeBtn" Content="Home" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Click="homeBtn_Click"/>
+        <Button Name="searchBtn" Content="Search" HorizontalAlignment="Left" Margin="242,41,0,0" VerticalAlignment="Top" Width="90" Height="23"/>
+        <TextBox Name="searchText" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="227"/>
+        <Button Name="resetBtn" Content="Reset" HorizontalAlignment="Left" Margin="337,41,0,0" VerticalAlignment="Top" Width="78" RenderTransformOrigin="-0.178,0.483" Height="24"/>
+    </Grid>
+    
+</Page>
