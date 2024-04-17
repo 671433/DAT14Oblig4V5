@@ -28,6 +28,9 @@
                 @Html.DisplayNameFor(model => model.Customer)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Hotel)
             </th>
             <th></th>
@@ -49,10 +52,13 @@
                 @Html.DisplayFor(modelItem => item.Checkout)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.PersonId)
+                @Html.DisplayFor(modelItem => item.Customer.Surname)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Lastname)
+                </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hotel.HotelId)
+                @Html.DisplayFor(modelItem => item.Hotel.HotelName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ReservationId">Edit</a> |

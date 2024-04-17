@@ -60,13 +60,13 @@ namespace DAT14Oblig4V5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservationId,CustomerId,HotelId,ReservationStart,ReservationEnd,Checkin,Checkout")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("ReservationId,CustomerId,HotelId,ReservationStart,ReservationEnd,RoomNr,Checkin=null,Checkout=null")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details)+"/"+reservation.ReservationId);
             }
             ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
             

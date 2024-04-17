@@ -24,7 +24,7 @@ public partial class Reservation
     public virtual ICollection<DayView> DayViews { get; set; } = new List<DayView>();
 
     public virtual Hotel? Hotel { get; set; }
-    public  int RoomNr { get;  set; }
+    public  int? RoomNr { get;  set; }
 
-    public virtual Room RoomNrNavigation { get; set; } = null!;
+    public virtual Room? RoomNrNavigation { get; set; } = null!;
 }
