@@ -66,7 +66,7 @@ namespace DAT14Oblig4V5.Controllers
             {
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Details)+"/"+reservation.ReservationId);
+                return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
             
