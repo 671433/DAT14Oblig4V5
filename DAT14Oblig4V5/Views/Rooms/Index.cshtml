@@ -21,6 +21,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.BedOptionNavigation)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Hotel )
             </th>
@@ -40,13 +41,13 @@
                 @Html.DisplayFor(modelItem => item.RoomSize)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BedOptionNavigation.BedOptionsId)
+                @Html.DisplayFor(modelItem => item.BedOptionNavigation.BedOptionsDesctription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hotel.HotelId)
+                @Html.DisplayFor(modelItem => item.Hotel.HotelName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.QualityNavigation.QualityId)
+                @Html.DisplayFor(modelItem => item.QualityNavigation.QualityDesctription)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RoomNr">Edit</a> |

@@ -54,35 +54,6 @@ namespace DAT14Oblig4V5.Controllers
             return View();
         }
 
-        // GET: Reservations/MakeReservation
-        public IActionResult MakeReservation()
-        {
-            ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId");
-            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId");
-            return View();
-        }
-
-
-
-        // POST: Reservations/MakeReservation
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MakeReservation([Bind("ReservationId,CustomerId,HotelId,ReservationStart,ReservationEnd,Checkin=null,Checkout=null")] Reservation reservation)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(reservation);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
-            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
-            return View(reservation);
-        }
-
-
 
         // POST: Reservations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -102,7 +73,10 @@ namespace DAT14Oblig4V5.Controllers
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
             ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr", reservation.RoomNr);
 
-            return View(reservation);
+
+
+
+                return View(reservation);
         }
 
         // GET: Reservations/Edit/5
@@ -120,6 +94,7 @@ namespace DAT14Oblig4V5.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
+            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr", reservation.RoomNr);
             return View(reservation);
         }
 
@@ -157,6 +132,7 @@ namespace DAT14Oblig4V5.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
+            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr", reservation.RoomNr);
             return View(reservation);
         }
 
