@@ -22,4 +22,6 @@ public partial class Room
     public virtual Hotel? Hotel { get; set; }
 
     public virtual Quality QualityNavigation { get; set; } = null!;
+
+    public virtual ICollection<Reservation> Reservations { get; set; }
 }

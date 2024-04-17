@@ -21,6 +21,11 @@
                 <select asp-for="HotelId" class ="form-control" asp-items="ViewBag.HotelId"></select>
             </div>
             <div class="form-group">
+                <label asp-for="RoomNr" class="control-label"></label>
+                <select asp-for="RoomNr" class="form-control" asp-items="ViewBag.RoomNr"></select>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="ReservationStart" class="control-label"></label>
                 <input asp-for="ReservationStart" class="form-control" />
                 <span asp-validation-for="ReservationStart" class="text-danger"></span>
@@ -40,6 +45,8 @@
                 <input asp-for="Checkout" class="form-control" />
                 <span asp-validation-for="Checkout" class="text-danger"></span>
             </div>
+            
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

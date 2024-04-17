@@ -50,6 +50,7 @@ namespace DAT14Oblig4V5.Controllers
         {
             ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId");
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId");
+            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr");
             return View();
         }
 
@@ -97,7 +98,10 @@ namespace DAT14Oblig4V5.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
+            
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
+            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr", reservation.RoomNr);
+
             return View(reservation);
         }
 
