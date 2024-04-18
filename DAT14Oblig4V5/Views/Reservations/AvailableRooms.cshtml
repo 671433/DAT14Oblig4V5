@@ -1,0 +1,123 @@
+﻿@model DAT14Oblig4V5.Models.AvailableRooms
+
+@{
+    ViewData["Title"] = "AvailableRooms";
+    
+}
+
+<h1>AvailableRooms</h1>
+
+<p>
+    <a asp-action="AvailableRooms">Search</a>
+</p>
+<form asp-action="Book">
+<div class="row">
+    <div class="col-md-4">
+        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="HotelId" class="control-label"></label>
+                <select asp-for="HotelId" class="form-control" asp-items="ViewBag.HotelId"></select>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="RoomNr" class="control-label"></label>
+                <select asp-for="RoomNr" class="form-control" asp-items="ViewBag.RoomNr"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReservationStart" class="control-label"></label>
+                <input asp-for="ReservationStart" class="form-control" />
+                <span asp-validation-for="ReservationStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReservationEnd" class="control-label"></label>
+                <input asp-for="ReservationEnd" class="form-control" />
+                <span asp-validation-for="ReservationEnd" class="text-danger"></span>
+            </div>
+
+            
+       
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNr)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => (model.RoomSize))
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BedOptionNavigation)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualityNavigation)
+            </th>
+            
+
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Rooms)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BedOptionNavigation.BedOptionsDesctription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel.HotelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QualityNavigation.QualityDesctription)
+                </td>
+                <td>
+
+                    <button asp-action="Book" name="Button" value="@item.RoomNr">Book</button> 
+
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+
+
+
+
+</form>

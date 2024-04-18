@@ -54,7 +54,6 @@ namespace DAT14Oblig4V5.Controllers
             return View();
         }
 
-
         // POST: Reservations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -69,15 +68,160 @@ namespace DAT14Oblig4V5.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
-            
+
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
             ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr", reservation.RoomNr);
 
 
 
 
-                return View(reservation);
+            return View(reservation);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // GET: Reservations/AvailableRooms
+        public IActionResult AvailableRooms()
+        {
+            ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId");
+            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId");
+            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr");
+            return View();
+        }
+
+
+
+        // POST: Reservations/AvailableRooms
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AvailableRooms([Bind("CustomerId,ReservationStart,ReservationEnd")] AvailableRooms reservation)
+        {
+           
+
+
+                var result = from room in _context.Rooms
+                             join reservations in _context.Reservations on room.RoomNr equals reservation.RoomNr into reservations
+                             from subReservation in reservations.DefaultIfEmpty()
+                             where (subReservation == null || (subReservation.ReservationStart < reservation.ReservationStart || subReservation.ReservationEnd > reservation.ReservationEnd))
+                            // && room.BedOptions == z.
+                             select room;
+
+
+                reservation.Rooms=result.ToList();
+
+                ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
+
+            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
+            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr", reservation.RoomNr);
+
+
+            return View(reservation);
+            
+          
+        }
+
+
+
+
+
+
+
+
+        // POST: Reservations/Book
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Book(String Button,[Bind("CustomerId,HotelId,ReservationStart,ReservationEnd,Checkin=null,Checkout=null")] Reservation reservation)
+        {
+
+            if (ModelState.IsValid)
+            {
+                reservation.RoomNr= int.Parse(Button);
+
+                    _context.Add(reservation);
+                await _context.SaveChangesAsync();
+
+
+
+                var routeValues = new RouteValueDictionary {
+  { "ReservationId", reservation.ReservationId }
+  
+};
+
+
+                // return RedirectToAction(nameof(Details), routeValues);
+                return Redirect("/Reservations/Details/" + reservation.ReservationId);
+
+
+            }
+            ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
+
+            ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId", reservation.HotelId);
+            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr", reservation.RoomNr);
+
+
+
+
+            return RedirectToAction(nameof(Create));
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Reservations/Edit/5
         public async Task<IActionResult> Edit(int? id)

@@ -12,6 +12,10 @@
 <table class="table">
     <thead>
         <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNr)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReservationStart)
             </th>
@@ -39,6 +43,10 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNr)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ReservationStart)
             </td>
