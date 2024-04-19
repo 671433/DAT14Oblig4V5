@@ -9,7 +9,7 @@ public partial class RoomRequestNote
 
     public int? DayView { get; set; }
 
-    public int? PersonId { get; set; }
+    public string? PersonId { get; set; }
 
     public DateTime? New { get; set; }
 

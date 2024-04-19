@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DAT14Oblig4V5.Models;
+using System.Security.Claims;
 
 namespace DAT14Oblig4V5.Controllers
 {
@@ -13,10 +14,15 @@ namespace DAT14Oblig4V5.Controllers
     {
         private readonly Oblig4Dat154DbContext _context;
 
+
+        
+
         public PeopleController(Oblig4Dat154DbContext context)
         {
             _context = context;
         }
+
+        
 
         // GET: People
         public async Task<IActionResult> Index()
@@ -35,7 +41,7 @@ namespace DAT14Oblig4V5.Controllers
 
             var person = await _context.People
                 .Include(p => p.RoleNavigation)
-                .FirstOrDefaultAsync(m => m.PersonId == id);
+                .FirstOrDefaultAsync(m => m.PersonId.Equals(id));
             if (person == null)
             {
                 return NotFound();
@@ -90,13 +96,15 @@ namespace DAT14Oblig4V5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PersonId,Surname,Lastname,Email,Phone,Password,Role")] Person person)
+        public async Task<IActionResult> Edit(string Id, [Bind("PersonId,Surname,Lastname,Email,Phone,Password,Role")] Person person)
         {
-            if (id != person.PersonId)
+
+           /*string id = this.User.FindFirstValue(ClaimTypes.NameIdentifier)
+            if (!id.Equals(person.PersonId))
             {
                 return NotFound();
             }
-
+           */
             if (ModelState.IsValid)
             {
                 try
@@ -131,7 +139,7 @@ namespace DAT14Oblig4V5.Controllers
 
             var person = await _context.People
                 .Include(p => p.RoleNavigation)
-                .FirstOrDefaultAsync(m => m.PersonId == id);
+                .FirstOrDefaultAsync(m => m.PersonId.Equals(id));
             if (person == null)
             {
                 return NotFound();
@@ -155,9 +163,9 @@ namespace DAT14Oblig4V5.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PersonExists(int id)
+        private bool PersonExists(string id)
         {
-            return _context.People.Any(e => e.PersonId == id);
+            return _context.People.Any(e => e.PersonId.Equals(id));
         }
     }
 }

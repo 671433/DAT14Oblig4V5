@@ -10,7 +10,7 @@ public class AvailableRooms
     //fra Reservations
     public int ReservationId { get; set; }
 
-    public int? CustomerId { get; set; }
+    public string? CustomerId { get; set; }
 
     public int? HotelId { get; set; }
 

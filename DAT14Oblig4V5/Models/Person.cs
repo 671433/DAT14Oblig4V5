@@ -5,7 +5,7 @@ namespace DAT14Oblig4V5.Models;
 
 public partial class Person
 {
-    public int PersonId { get; set; }
+    public string PersonId { get; set; }
 
     public string Surname { get; set; } = null!;
 

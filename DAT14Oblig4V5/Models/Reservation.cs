@@ -7,7 +7,7 @@ public partial class Reservation
 {
     public int ReservationId { get; set; }
 
-    public int? CustomerId { get; set; }
+    public string? CustomerId { get; set; }
 
     public int? HotelId { get; set; }
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DAT14Oblig4V5.Models;
+using System.Security.Claims;
 
 namespace DAT14Oblig4V5.Controllers
 {
@@ -48,9 +49,9 @@ namespace DAT14Oblig4V5.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId");
+            
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId");
-            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr");
+            
             return View();
         }
 
@@ -59,10 +60,14 @@ namespace DAT14Oblig4V5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReservationId,CustomerId,HotelId,ReservationStart,ReservationEnd,RoomNr,Checkin=null,Checkout=null")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("ReservationId,HotelId,ReservationStart,ReservationEnd,RoomNr,Checkin=null,Checkout=null")] Reservation reservation)
         {
+            reservation.CustomerId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (ModelState.IsValid)
             {
+
+
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -108,9 +113,9 @@ namespace DAT14Oblig4V5.Controllers
         // GET: Reservations/AvailableRooms
         public IActionResult AvailableRooms()
         {
-            ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId");
+           
             ViewData["HotelId"] = new SelectList(_context.Hotels, "HotelId", "HotelId");
-            ViewData["RoomNr"] = new SelectList(_context.Rooms, "RoomNr", "RoomNr");
+            
             return View();
         }
 
@@ -121,19 +126,31 @@ namespace DAT14Oblig4V5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AvailableRooms([Bind("CustomerId,ReservationStart,ReservationEnd")] AvailableRooms reservation)
+        public async Task<IActionResult> AvailableRooms( [Bind("ReservationStart,ReservationEnd")] AvailableRooms reservation)
         {
            
 
 
-                var result = from room in _context.Rooms
+            var result = from room in _context.Rooms
+                         where !_context.Reservations.Any(r =>
+                              room.RoomNr == r.RoomNr &&
+                              r.ReservationStart < reservation.ReservationEnd &&
+                              r.ReservationEnd > reservation.ReservationStart)
+                        select room;
+
+
+
+
+            
+
+            /*var result = from room in _context.Rooms
                              join reservations in _context.Reservations on room.RoomNr equals reservation.RoomNr into reservations
                              from subReservation in reservations.DefaultIfEmpty()
                              where (subReservation == null || (subReservation.ReservationStart < reservation.ReservationStart || subReservation.ReservationEnd > reservation.ReservationEnd))
                             // && room.BedOptions == z.
                              select room;
 
-
+            */
                 reservation.Rooms=result.ToList();
 
                 ViewData["CustomerId"] = new SelectList(_context.People, "PersonId", "PersonId", reservation.CustomerId);
@@ -159,8 +176,10 @@ namespace DAT14Oblig4V5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Book(String Button,[Bind("CustomerId,HotelId,ReservationStart,ReservationEnd,Checkin=null,Checkout=null")] Reservation reservation)
+        public async Task<IActionResult> Book(String Button,[Bind("HotelId,ReservationStart,ReservationEnd,Checkin=null,Checkout=null")] Reservation reservation)
         {
+            //var userId
+            reservation.CustomerId= this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (ModelState.IsValid)
             {
